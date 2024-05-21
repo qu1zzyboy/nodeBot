@@ -1,0 +1,41 @@
+version: "3.1"
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: litterpigger
+      MONGO_INITDB_ROOT_PASSWORD: lhb1999114
+    volumes:
+      - mongo-db:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: litterpigger
+      ME_CONFIG_MONGODB_ADMINPASSWORD: lhb1999114
+      ME_CONFIG_BASICAUTH_USERNAME: hanbo
+      ME_CONFIG_BASICAUTH_PASSWORD: hanboli
+      ME_CONFIG_MONGODB_URL: mongodb://litterpigger:lhb1999114@mongo:27017/
+
+  api:
+    build:
+      context: ./API
+      args:
+        NODE_ENV: DEV
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_USER=litterpigger
+      - MONGO_PASSWORD=lhb1999114
+      - PORT=4000
+    volumes:
+      - ./API:/app/API
+      - nodemodule:/app/server/node_modules
+    command: npm run dev
+
+volumes:
+  mongo-db:
+  nodemodule:
