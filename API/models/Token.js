@@ -4,15 +4,26 @@ const tokenSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    Category: {
+        type: String,
+        require: true,
+    },
     Date: {
         type: Date,
+        require: true,
+        unique: true,
+    },
+    CS: {
+        type: Number,
         require: true,
     },
     Emmision: {
         type: Number
     },
-    Inflation: {
-        type: Number
+    DInflation: {
+        type: Number,
+        require: false,
+        default: null
     },
     WInflation: {
         type: Number,
@@ -25,4 +36,4 @@ const tokenSchema = new mongoose.Schema({
         default: null
     }
 })
-modules.exports = mongoose.model("Token", tokenSchema)
+module.exports = mongoose.model("Token", tokenSchema)
