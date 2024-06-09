@@ -1,4 +1,1 @@
-# nodeBot
-# nodeBot
-# nodeBot
-# nodeBot
+This node bot is for crypto trade. The strategy is based on the inflation of token.
