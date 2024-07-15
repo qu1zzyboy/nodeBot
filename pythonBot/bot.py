@@ -4,7 +4,7 @@ import json
 from binance import AsyncClient, DepthCacheManager, BinanceSocketManager
 
 async def main():
-    # initialise the client
+    # initialise the clientasd
     client = await AsyncClient.create()
 
     # run some simple requests
